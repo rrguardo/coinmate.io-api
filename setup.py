@@ -11,7 +11,7 @@ setup(
     url = 'https://bitbucket.org/4simple/coinmate.io-api',
     packages = ['coinmate_api'],
     package_dir = {'': 'src'},
-    version = '1.1.4',
+    version = '1.1.5',
     description = 'CoinMate.io BitCoin processor API.',
     author = 'http://www.4simple.org',
     author_email = 'support@4simple.org',
