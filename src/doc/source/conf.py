@@ -69,8 +69,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'CoinMate API'
-copyright = u'2016, 4simple.org'
-author = u'4simple.org'
+copyright = u'2016-2019'
+author = u'https://github.com/rrguardo/'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

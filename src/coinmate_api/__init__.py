@@ -4,8 +4,13 @@
  Version 1.1.0
 """
 
-from urllib2 import Request, urlopen
-from urllib import urlencode
+try:
+    from urllib.request import Request, urlopen
+    from urllib.parse import urlencode
+except ImportError:
+    from urllib2 import Request, urlopen
+    from urllib import urlencode
+
 import hmac
 import hashlib
 import time
@@ -20,7 +25,7 @@ class coinmate:
 
         from coinmate_api import coinmate
         cm_api = coinmate('privateApiKey', 'publicApiKey', 'client_id')
-        tid = cm_api.withdraw_bitcoins(2,'1HB1by2ZkbFAwEAqC5zwoHcU1DroBysrPG')
+        tid = cm_api.withdraw_bitcoins(0.01,'1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa')
     """
 
     API_URL = "https://coinmate.io/api/"
@@ -42,27 +47,28 @@ class coinmate:
             By default a function that return the number of miliseconds
             is used.
         """
-        self.privateApiKey = str(privateApiKey)
-        self.publicApiKey = str(publicApiKey)
+        self.privateApiKey = privateApiKey
+        self.publicApiKey = publicApiKey
         self.clientId = str(clientId)
         if not nonce:
-            self.nonce = lambda: str(int(time.time() * 100000))
+            self.nonce = lambda:  str(time.time()).replace(".", "") + "9900000"
 
     def create_signature(self, nonce):
         """ This functions generate the signature."""
-        signature = nonce + self.clientId + self.publicApiKey
+        signature = "{}{}{}".format(nonce, self.clientId, self.publicApiKey)
         dig = hmac.new(
             self.privateApiKey,
-            msg=signature,
+            msg=signature.encode('utf-8'),
             digestmod=hashlib.sha256
         ).hexdigest()
         signature = dig.encode('utf-8')
-        return signature.upper()
+        signature = signature.upper()
+        return signature
 
     def __do_request(self, url, values=None, headers=None):
         """ Send the HTTP request to the API server."""
         if values:
-            values = urlencode(values)
+            values = urlencode(values).encode('utf-8')
         if headers is None:
             headers = {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -99,6 +105,7 @@ class coinmate:
         values = {
             'clientId': self.clientId,
             'nonce': nonce,
+            'publicKey': self.publicApiKey,
             'signature': self.create_signature(nonce)
         }
         resp = self.__do_request('balances', values)

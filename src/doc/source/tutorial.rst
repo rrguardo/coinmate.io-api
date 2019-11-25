@@ -20,7 +20,7 @@ Withdraw bitcoins ::
 
 	from coinmate_api import coinmate
 	cm_api = coinmate('privateApiKey', 'publicApiKey', 'client_id')
-	tid = cm_api.withdraw_bitcoins(2.57, '1HB1by2ZkbFAwEAqC5zwoHcU1DroBysrPG')
+	tid = cm_api.withdraw_bitcoins(0.01, '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa')
 	print "Transaction ID: %s" % tid
 
 
