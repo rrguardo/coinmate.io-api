@@ -4,12 +4,13 @@
 """
 
 from distutils.core import setup
+import setuptools
 
 setup(
     name='coinmate-api',
     keywords=['bitcoin', 'coinmate.io', 'bitcoin api'],
     url='https://github.com/rrguardo/coinmate.io-api',
-    packages=['coinmate_api'],
+    packages=setuptools.find_packages(),
     package_dir={'': 'src'},
     version='1.1.6',
     description='CoinMate.io exchange API client.',
