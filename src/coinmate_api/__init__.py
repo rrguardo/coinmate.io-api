@@ -51,7 +51,7 @@ class coinmate:
         self.publicApiKey = publicApiKey
         self.clientId = str(clientId)
         if not nonce:
-            self.nonce = lambda:  str(time.time()).replace(".", "") + "9900000"
+            self.nonce = lambda: str(int(time.time() * 100))
 
     def create_signature(self, nonce):
         """ This functions generate the signature."""
