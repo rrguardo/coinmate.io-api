@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
  CoinMate.io API implementation.
- Version 1.1.0
+ Version 1.1.7
 """
 
 try:

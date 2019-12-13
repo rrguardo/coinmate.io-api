@@ -12,7 +12,7 @@ setup(
     url='https://github.com/rrguardo/coinmate.io-api',
     packages=setuptools.find_packages(),
     package_dir={'': 'src'},
-    version='1.1.6',
+    version='1.1.7',
     description='CoinMate.io exchange API client.',
     author='https://github.com/rrguardo/',
     author_email='17535309+rrguardo@users.noreply.github.com',
